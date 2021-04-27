@@ -10,7 +10,7 @@ namespace EntityLayer.Concrete
    public class Content
     {
         [Key]
-        public int ContentID { get; set; }
+        public int ContentID { get; set; } 
 
         [StringLength(1000)]
         public string ContentValue { get; set; }
