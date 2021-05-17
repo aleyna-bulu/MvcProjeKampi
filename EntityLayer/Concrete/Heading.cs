@@ -9,6 +9,8 @@ namespace EntityLayer.Concrete
 {
    public class Heading
     {
+        public int CategoryId;
+
         [Key]
         public int HeadingID { get; set; }
 
@@ -23,5 +25,6 @@ namespace EntityLayer.Concrete
         public virtual Writer Writer { get; set; }
 
         public ICollection<Content> Contents  { get; set; }
+        public string HeadName { get; set; }
     }
 }
