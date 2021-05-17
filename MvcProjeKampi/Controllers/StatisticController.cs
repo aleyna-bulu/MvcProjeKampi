@@ -7,33 +7,24 @@ using System.Web.Mvc;
 
 namespace MvcProjeKampi.Controllers
 {
-    public class StatisticController : Controller
-    {
-            // GET: Statistic
-            Context context = new Context();
-        // GET: Statistic
-        public ActionResult Index()
+    
+        public class StatisticsController : Controller
         {
-            var toplamKategori = context.Categories.Count().ToString();
-            ViewBag.toplamKategori = toplamKategori;
-          
-
-            var value2 = context.Headings.Count(x => x.CategoryId == 11).ToString();
-            ViewBag.value2 = value2;
-
-
-            var value3 = context.Writers.Where(n => n.WriterName.Contains("a") || n.WriterName.Contains("A")).Count();
-            ViewBag.value3 = value3;
-
-
-            var value4 = context.Categories.Where(u => u.CategoryID == context.Headings.GroupBy(x => x.CategoryId).OrderByDescending(x => x.Count())
-               .Select(x => x.Key).FirstOrDefault()).Select(x => x.CategoryName).FirstOrDefault();
-            ViewBag.value4 = value4;
-
-
-            var value5 = context.Categories.Where(n => n.CategoryStatus == true).Count() - context.Categories.Where(n => n.CategoryStatus == false).Count();
-            ViewBag.value5 = value5;
-            return View();
-        }
+            Context context = new Context();
+            public ActionResult Index()
+            {
+                var result = context.Categories.Count();
+                var result2 = context.Headings.Count(x => x.Category.CategoryID == 1024);
+                var result3 = context.Writers.Count(x => x.WriterName.Contains("a"));
+                var result4 = context.Headings.Max(x => x.Category.CategoryName);
+                var result5 = context.Categories.Count(x => x.CategoryStatus == true);
+                var result6 = context.Categories.Count(x => x.CategoryStatus == false);
+                ViewBag.CategoryCount = result;
+                ViewBag.Heading = result2;
+                ViewBag.Writer = result3;
+                ViewBag.HeadingMax = result4;
+                ViewBag.Status = (result5 - result6);
+                return View();
+            }
     }
 }

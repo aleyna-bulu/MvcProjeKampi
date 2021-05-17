@@ -14,13 +14,13 @@
         <th> Sil </th>
         <th> Güncelle </th>
         <th> Başlıklar </th>
-
     </tr>
     @foreach (var item in Model)
     {
 <tr>
     <th> @item.CategoryID </th>
     <td> @item.CategoryName </td>
+    <td> @item.CategoryDescription </td>
     <td><a href="/AdminCategory/DeleteCategory/@item.CategoryID" class="btn btn-danger">Sil</td>
     <td><a href="/AdminCategory/EditCategory/@item.CategoryID" class="btn btn-warning">Güncelle</td>
     <td><a href="#" class="btn btn-primary">Başlıklar</td>
